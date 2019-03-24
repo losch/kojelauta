@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  height: calc(100vh - 64px);
+  width: calc(100vw - 64px);
+  color: white;
+  padding: 32px;
+}
+
+.Header {
+
+}
+
+.Panel {
+  display: inline-block;
+  padding: 6px;
+  margin: 6px;
+  text-align: left;
+  border: 1px solid #ddd;
+  color: black;
+  background-color: white;
+  width: 200px;
+  box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.75);
+}
+
+.PanelContents {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.SensorLabel {
+  font-weight: 600;
+}
+
+.SensorValue {
+  text-align: right;
+  font-weight: 300;
+}
