@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Panel from '../components/Panel';
-import HeartbeatIcon from '../components/HeartbeatIcon';
+import {HeartbeatIcon} from '../components/Icons';
 
 const UPDATE_INTERVAL = 5000;
 
