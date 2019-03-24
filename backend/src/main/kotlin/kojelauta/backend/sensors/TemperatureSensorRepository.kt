@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 import java.math.BigDecimal
 
 @Repository
-class TemperatureSensorRepository(config: SensorsConfiguration) {
+class TemperatureSensorRepository(private val config: SensorsConfiguration) {
 
     private val log = LoggerFactory.getLogger(this::class.java)
 
@@ -34,8 +34,10 @@ class TemperatureSensorRepository(config: SensorsConfiguration) {
         return influxDB.query(query).results.flatMap {
                 it.series.flatMap { series ->
                     series.values.map { value ->
+                        val mac = value[1].toString()
                         TemperatureMeasurement(
-                            mac = value[1].toString(),
+                            mac = mac,
+                            label = config.labels[mac],
                             temperature = BigDecimal(value[2].toString()).setScale(2),
                             humidity = BigDecimal(value[3].toString()).setScale(2)
                         )

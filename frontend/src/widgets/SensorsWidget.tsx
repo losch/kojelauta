@@ -6,6 +6,7 @@ const UPDATE_INTERVAL = 5000;
 
 interface TemperatureSensorMeasurement {
   mac: string;
+  label?: string;
   temperature: string;
   humidity: string;
 }
@@ -63,20 +64,24 @@ export default class SensorsWidget extends Component<any, SensorsWidgetState> {
                 <table>
                   <tbody>
                   <tr>
-                    <td>MAC</td>
-                    <td className="SensorValue">
-                      {this.state.sensors[mac][0].mac}
-                    </td>
-                    <td>
+                    <td colSpan={2}>
                       {
-                        <div style={{width: 30, textAlign: 'right'}}>
-                          {
-                            this.state.highlight ?
-                              <HeartbeatIcon/> :
-                              null
-                          }
-                        </div>
+                        this.state.sensors[mac][0].label ||
+                        this.state.sensors[mac][0].mac
                       }
+                      {' '}
+                      <div style={{
+                          display: 'inline-block',
+                          float: 'right',
+                          width: 20,
+                          textAlign: 'right'}
+                        }>
+                        {
+                          this.state.highlight ?
+                            <HeartbeatIcon/> :
+                            null
+                        }
+                      </div>
                     </td>
                   </tr>
                   <tr>

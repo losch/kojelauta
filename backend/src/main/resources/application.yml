@@ -2,3 +2,8 @@ sensors:
   host: http://192.168.1.4:8086
   user: root
   password: root
+  labels:
+    E25232ACA5B0: Ulkona
+    CAA3B38029BA: Autotalli
+    DA02C0B09270: Takkahuone
+    FD8E0271D051: Kylpyhuone

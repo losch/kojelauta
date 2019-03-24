@@ -1,12 +1,11 @@
 .Panel {
     display: inline-block;
-    padding: 6px;
+    padding: 12px;
     margin: 6px;
     text-align: left;
     border: 1px solid #ddd;
     color: black;
     background-color: white;
-    width: 200px;
     box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.75);
 }
 

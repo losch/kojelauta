@@ -7,8 +7,13 @@ typealias TemperatureMeasurementsBySensor = Map<String, List<TemperatureMeasurem
 data class TemperatureMeasurement(
     // MAC address of the sensor
     val mac: String,
+
+    // Label for the sensor
+    val label: String?,
+
     // Temperature in Celsius
     val temperature: BigDecimal,
+
     // Relative humidity
     val humidity: BigDecimal
 )

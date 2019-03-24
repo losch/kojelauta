@@ -12,4 +12,5 @@ class SensorsConfiguration {
     lateinit var host: String
     lateinit var user: String
     lateinit var password: String
+    lateinit var labels: Map<String, String>
 }
