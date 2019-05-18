@@ -15,7 +15,7 @@ data class TemperatureMeasurementEvents(val measurements: TemperatureMeasurement
 class TemperatureServerEventEmitter(
         private val temperatureSensorRepository: TemperatureSensorRepository) : ServerEventEmitter {
 
-    override val flux = Flux.interval(Duration.ofSeconds(1))
+    override val events = Flux.interval(Duration.ofSeconds(1))
         .map {
             TemperatureMeasurementEvents(
                 measurements = temperatureSensorRepository.findLatestMeasurementsBySensor()

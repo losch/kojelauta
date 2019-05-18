@@ -33,15 +33,14 @@ class CoffeeMachine : ServerEventEmitter,
         DirectProcessor.create<CoffeeMachineServerEvent>()
                        .serialize()
     private final val fluxSink = fluxProcessor.sink()
-    private final val coffeeStatePublishFlux =
-        Flux.interval(Duration.ofSeconds(1))
-            .map { CoffeeMachineServerEvent(state.get()) }
 
-    override val flux = Flux.merge(coffeeStatePublishFlux, fluxProcessor)
+    override val events = fluxProcessor
 
     // Client event handling
 
-    override fun internalHandleEvent(event: CoffeeMachineClientEvent) {
+    override fun getInitialEvent() = CoffeeMachineServerEvent(state.get())
+
+    override fun handleEvent(event: CoffeeMachineClientEvent) {
         state.set(event.enabled)
         fluxSink.next(CoffeeMachineServerEvent(state.get()))
     }

@@ -15,5 +15,13 @@ open class Event(
  * and the Flux can be subscribed..
  */
 interface ServerEventEmitter {
-    val flux: Flux<out Event>
+    /**
+     * Events flux where events can be emitted to
+     */
+    val events: Flux<out Event>
+
+    /**
+     * A function that returns initial data when the event emitter
+     */
+    fun getInitialEvent(): Event? = null
 }

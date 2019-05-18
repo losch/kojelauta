@@ -25,13 +25,13 @@ import java.lang.Exception
  */
 @Configuration
 class WebSocketConfiguration(private val objectMapper: ObjectMapper,
-                             serverEventEmitters: List<ServerEventEmitter>,
+                             private val serverEventEmitters: List<ServerEventEmitter>,
                              private val eventHandlers: List<ClientEventHandler<out ClientEvent>>) {
 
     private val log = LoggerFactory.getLogger(this.javaClass)
 
     private val eventsBus: Flux<out Event> =
-        Flux.merge(serverEventEmitters.map { it.flux })
+        Flux.merge(serverEventEmitters.map { it.events })
             .share()
             .doOnSubscribe { log.info("Events subscribed") }
             .doFinally { log.info("Events unsubscribed") }
@@ -71,7 +71,7 @@ class WebSocketConfiguration(private val objectMapper: ObjectMapper,
 
             handlers.forEach { handler ->
                 val event = objectMapper.readValue(payload, handler.eventClass)
-                handler.handleEvent(event)
+                handler.castAndHandleEvent(event)
             }
         }
         catch(e: Exception) {
@@ -88,13 +88,26 @@ class WebSocketConfiguration(private val objectMapper: ObjectMapper,
             }
         )
 
+    private fun sendInitialMessages(session: WebSocketSession): Mono<Void> {
+        return session.send(
+            Flux.fromIterable(serverEventEmitters.mapNotNull { it.getInitialEvent() })
+                .map {
+                    log.info("Publishing init data to ${session.handshakeInfo.remoteAddress} $it")
+                    session.textMessage(objectMapper.writeValueAsString(it))
+                }
+        )
+    }
+
     @Bean
     fun websocketHandler() = WebSocketHandler { session ->
         session.receive()
             .map { receiveMessage(session, it) }
             .then()
+            .and(sendInitialMessages(session))
             .and(sendMessages(session))
-            .doOnSubscribe { log.info("WebSocket connected from ${session.handshakeInfo.remoteAddress}") }
+            .doOnSubscribe {
+                log.info("WebSocket connected from ${session.handshakeInfo.remoteAddress}")
+            }
             .doFinally { log.info("WebSocket disconnected to ${session.handshakeInfo.remoteAddress}") }
     }
 }

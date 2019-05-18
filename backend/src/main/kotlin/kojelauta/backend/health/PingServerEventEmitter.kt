@@ -17,5 +17,5 @@ class PingServerEventEmitter : ServerEventEmitter {
 
     private val pingInterval = Duration.ofSeconds(5L)
 
-    override val flux = Flux.interval(pingInterval).map { PingEvent() }
+    override val events = Flux.interval(pingInterval).map { PingEvent() }
 }

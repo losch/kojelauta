@@ -21,7 +21,7 @@ class PongClientEventsHandler : ClientEventHandler<PongClientEvent>(PONG_EVENT_T
 
     private val log = LoggerFactory.getLogger(this.javaClass)
 
-    override fun internalHandleEvent(event: PongClientEvent) {
+    override fun handleEvent(event: PongClientEvent) {
         log.info("Got PONG: $event")
     }
 }
