@@ -1,8 +1,6 @@
 .Panel {
-    display: inline-block;
     padding: 12px;
     margin: 6px;
-    text-align: left;
     border: 1px solid #ddd;
     color: black;
     background-color: white;
@@ -10,9 +8,44 @@
 }
 
 .PanelContents {
+    width: 300px;
+    height: 100px;
+
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
 }
+
+.Panel.danger,
+.Panel.disaster {
+    background-color: #ff8187;
+    border-color: red;
+    color: white;
+}
+
+.Panel.warning {
+    background-color: #f1ff8d;
+}
+
+.Panel.info {
+    background-color: #49ff85;
+}
+
+.Panel.disaster {
+    font-weight: 800;
+    animation: blink-animation 1s steps(3, start) infinite;
+    -webkit-animation: blink-animation 1s steps(3, start) infinite;
+}
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+@-webkit-keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+

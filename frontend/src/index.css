@@ -6,4 +6,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;;
+
+  box-sizing: border-box;
+  background-color: #282c34;
+}
+
+.button {
+  border: 0;
+  border-radius: 4px;
+  user-select: none;
+  padding: 8px 16px;
+  min-height: 36px;
+  font-size: 16px;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  background-color: aqua;
+  margin: 6px;
 }

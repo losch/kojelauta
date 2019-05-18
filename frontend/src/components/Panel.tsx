@@ -3,10 +3,11 @@ import './Panel.css';
 
 interface PanelProps {
   children: any;
+  className?: string;
 }
 
-const Panel = ({children}: PanelProps) =>
-  <div className="Panel">
+const Panel = ({children, className}: PanelProps) =>
+  <div className={"Panel" + (className ? ` ${className}` : '')}>
     <div className="PanelContents">
       {children}
     </div>

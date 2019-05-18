@@ -21,7 +21,7 @@ export default class ClockWidget extends Component<any, ClockWidgetState> {
   };
 
   componentDidMount() {
-    window.setInterval(this.updateTime, UPDATE_INTERVAL);
+    this.timeoutHandle = window.setInterval(this.updateTime, UPDATE_INTERVAL);
   }
 
   componentWillUnmount() {
