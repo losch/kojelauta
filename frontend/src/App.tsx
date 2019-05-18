@@ -4,6 +4,7 @@ import './components/Icons.tsx';
 import ClockWidget from './widgets/ClockWidget';
 import {EventProps, withWebSocketMessage} from './api';
 import TemperatureWidget from './widgets/TemperatureWidget';
+import CoffeeMachineWidget from './widgets/CoffeeMachineWidget';
 
 class App extends Component<EventProps, any> {
 
@@ -33,21 +34,7 @@ class App extends Component<EventProps, any> {
         </div>
 
         <div className="App">
-          <div style={{padding: 12}}>
-            Kahvi: {
-              this.state.coffeeEnabled === true ? 'Päällä' :
-              this.state.coffeeEnabled === false ? 'Pois päältä' :
-              'Odotetaan tietoa...'
-            }
-          </div>
-          <button className="button"
-                  onClick={() => this.props.emit({type: 'coffee', enabled: true})}>
-            Kahvi päälle
-          </button>
-          <button className="button"
-                  onClick={() => this.props.emit({type: 'coffee', enabled: false})}>
-            Kahvi pois päältä
-          </button>
+          <CoffeeMachineWidget event={event} emit={this.props.emit} />
         </div>
       </div>
     );

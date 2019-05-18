@@ -19,6 +19,35 @@ body {
   min-height: 36px;
   font-size: 16px;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  background-color: aqua;
   margin: 6px;
+  cursor: pointer;
+  transition: background-color 200ms ease-out;
+}
+
+.button:active,
+.button:focus {
+  outline: none;
+}
+
+.button.on {
+  background-color: #94ff9a;
+}
+
+.button.off {
+  background-color: #ff8187;
+}
+
+.button-group > .button {
+  display: inline-block;
+  border-radius: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.button-group > .button:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.button-group > .button:last-of-type {
+  border-radius: 0 4px 4px 0;
 }
