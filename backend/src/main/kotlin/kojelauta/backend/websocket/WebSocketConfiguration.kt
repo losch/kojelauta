@@ -54,8 +54,6 @@ class WebSocketConfiguration(private val objectMapper: ObjectMapper,
     @Bean
     fun handlerAdapter() = WebSocketHandlerAdapter()
 
-    class ClientEventType(override val type: String) : ClientEvent
-
     private fun receiveMessage(session: WebSocketSession,
                                message: WebSocketMessage) {
         log.info("Received message from ${session.handshakeInfo.remoteAddress}")
@@ -63,7 +61,7 @@ class WebSocketConfiguration(private val objectMapper: ObjectMapper,
         try {
             val payload = message.payloadAsText
 
-            val type = objectMapper.readValue(payload, ClientEventType::class.java).type
+            val type = objectMapper.readValue(payload, ClientEvent::class.java).type
 
             val handlers = eventHandlers.filter { it.type == type }
 

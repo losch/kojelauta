@@ -5,18 +5,15 @@ import java.lang.IllegalArgumentException
 /**
  * Client event type
  */
-interface ClientEvent {
+open class ClientEvent(
     val type: String
-}
+)
 
 /**
  * Event handler for receiving events from clients
  */
-interface ClientEventHandler<T : ClientEvent> {
-
-    val eventClass: Class<T>
-
-    val type: String
+abstract class ClientEventHandler<T: ClientEvent>(val type: String,
+                                                  val eventClass: Class<T>) {
 
     fun handleEvent(event: ClientEvent) {
         @Suppress("UNCHECKED_CAST")
@@ -26,5 +23,5 @@ interface ClientEventHandler<T : ClientEvent> {
         )
     }
 
-    fun internalHandleEvent(event: T)
+    abstract fun internalHandleEvent(event: T)
 }
