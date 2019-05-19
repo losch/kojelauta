@@ -22,7 +22,7 @@ export function withWebSocketMessage(WrappedComponent: any) {
     state: WebSocketMessageState = {};
 
     initWebsocket() {
-      this.ws = new WebSocket(`ws://${window.location.hostname}:8080/events`);
+      this.ws = new WebSocket(`ws://${window.location.hostname}:${window.location.port}/events`);
       this.ws.onopen = () => { console.log('connection established') };
       this.ws.onclose = () => {
         console.log('Connection closed. Trying to reconnect in 5 seconds...');

@@ -23,6 +23,14 @@ class StaticRouter {
     }
 
     /**
+     *
+     */
+    @Bean
+    fun checkAuth() = router {
+        GET("/checkAuth") { ok().contentType(MediaType.TEXT_PLAIN).syncBody("OK") }
+    }
+
+    /**
      * Assets
      */
     @Bean
