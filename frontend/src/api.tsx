@@ -1,5 +1,7 @@
 import React, { Component }  from 'react';
 
+const WS_ADDRESS = `${window.location.protocol == 'https' ? 'wss' : 'ws'}://${window.location.hostname}:${window.location.port}/events`;
+
 export interface Event {
   type: string;
 }
@@ -22,7 +24,7 @@ export function withWebSocketMessage(WrappedComponent: any) {
     state: WebSocketMessageState = {};
 
     initWebsocket() {
-      this.ws = new WebSocket(`ws://${window.location.hostname}:${window.location.port}/events`);
+      this.ws = new WebSocket(WS_ADDRESS);
       this.ws.onopen = () => { console.log('connection established') };
       this.ws.onclose = () => {
         console.log('Connection closed. Trying to reconnect in 5 seconds...');
