@@ -1,4 +1,4 @@
-package kojelauta.backend.coffeemachine
+package kojelauta.backend.features.coffeemachine
 
 import java.time.LocalDateTime
 import java.time.LocalTime

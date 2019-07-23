@@ -1,4 +1,4 @@
-package kojelauta.backend.coffeemachine
+package kojelauta.backend.features.coffeemachine
 
 import org.junit.Test
 

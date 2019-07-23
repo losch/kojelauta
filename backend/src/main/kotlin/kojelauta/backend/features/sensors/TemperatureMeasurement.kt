@@ -1,4 +1,4 @@
-package kojelauta.backend.sensors
+package kojelauta.backend.features.sensors
 
 import java.math.BigDecimal
 

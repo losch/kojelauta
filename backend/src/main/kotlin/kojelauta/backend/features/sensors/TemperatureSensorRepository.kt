@@ -1,4 +1,4 @@
-package kojelauta.backend.sensors
+package kojelauta.backend.features.sensors
 
 import org.influxdb.InfluxDBFactory
 import org.influxdb.dto.Query

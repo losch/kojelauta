@@ -1,9 +1,8 @@
-package kojelauta.backend.sensors
+package kojelauta.backend.features.sensors
 
 import kojelauta.backend.events.Event
 import kojelauta.backend.events.ServerEventEmitter
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
-import org.springframework.context.annotation.Conditional
 import org.springframework.stereotype.Component
 import reactor.core.publisher.Flux
 import java.time.Duration
@@ -14,7 +13,6 @@ data class TemperatureMeasurementEvents(val measurements: TemperatureMeasurement
  * Publishes temperature sensor data periodically for clients
  */
 @Component
-@ConditionalOnExpression("false")
 class TemperatureServerEventEmitter(
         private val temperatureSensorRepository: TemperatureSensorRepository) : ServerEventEmitter {
 

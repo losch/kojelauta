@@ -1,4 +1,4 @@
-package kojelauta.backend.coffeemachine
+package kojelauta.backend.features.coffeemachine
 
 import kojelauta.backend.events.ClientEvent
 import kojelauta.backend.events.ClientEventHandler
