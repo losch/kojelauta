@@ -35,6 +35,14 @@ export default class TemperatureWidget extends Component<TemperatureWidgetProps,
     }
   }
 
+  private formatTemperature(temperature: number) {
+    return <>{temperature.toFixed(2)}&deg;C</>;
+  }
+
+  private formatHumidity(humidity: number) {
+    return `${humidity.toFixed(0)}%`;
+  }
+
   render() {
     const event = this.state.latestEvent;
     const measurements = event ? event.measurements : null;
@@ -60,7 +68,10 @@ export default class TemperatureWidget extends Component<TemperatureWidgetProps,
                         {measurements[mac][0].label}
                       </td>
                       <td style={{textAlign: 'right', paddingLeft: 6}}>
-                        {measurements[mac][0].temperature}&deg;C
+                        {this.formatTemperature(measurements[mac][0].temperature)}
+                      </td>
+                      <td style={{textAlign: 'right', paddingLeft: 6}}>
+                        {this.formatHumidity(measurements[mac][0].humidity)}
                       </td>
                     </tr>
                     </tbody>
