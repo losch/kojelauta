@@ -26,7 +26,7 @@ export default class CoffeeMachineWidget extends Component<CoffeeMachineWidgetPr
   };
 
   static getDerivedStateFromProps(props: CoffeeMachineWidgetProps, state: CoffeeMachineWidgetState): CoffeeMachineWidgetState | null {
-    if (props.event && props.event.type == "coffee") {
+    if (props.event && props.event.type === "coffee") {
       return {
         ...state,
         latestEvent: props.event as CoffeeMachineEvent

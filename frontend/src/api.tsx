@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 
-const WS_ADDRESS = `${window.location.protocol == 'https' ? 'wss' : 'ws'}://${window.location.hostname}:${window.location.port}/events`;
+const WS_ADDRESS = `${window.location.protocol === 'https' ? 'wss' : 'ws'}://${window.location.hostname}:${window.location.port}/events`;
 
 export interface Event {
   type: string;
@@ -32,7 +32,7 @@ export function withWebSocketMessage(WrappedComponent: any) {
       };
       this.ws.onerror = (err) => { console.log('error: ', err)};
       this.ws.onmessage = (event) => {
-        if (JSON.parse(event.data).type == "ping") {
+        if (JSON.parse(event.data).type === "ping") {
           this.emit({type: 'pong', timestamp: new Date()});
         }
         this.setState({event: JSON.parse(event.data)});

@@ -14,7 +14,7 @@ class App extends Component<EventProps, any> {
   };
 
   componentWillReceiveProps(nextProps: Readonly<EventProps>, nextContext: any): void {
-    if (nextProps.event.type == 'coffee') {
+    if (nextProps.event.type === 'coffee') {
       this.setState({ coffeeEnabled: (nextProps.event as any).enabled });
     }
   }
