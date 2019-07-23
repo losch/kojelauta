@@ -8,19 +8,10 @@ import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import reactor.core.publisher.DirectProcessor
-import reactor.core.publisher.Flux
-import java.time.Duration
-import java.time.LocalTime
-import java.util.concurrent.atomic.AtomicBoolean
+import java.time.LocalDateTime
 import java.util.concurrent.atomic.AtomicReference
 
 const val COFFEE_EVENT_TYPE = "coffee"
-
-data class CoffeeMachineState(
-    val enabled: Boolean,
-    val schedulingEnabled: Boolean,
-    val scheduledTime: LocalTime
-)
 
 data class CoffeeMachineServerEvent(val state: CoffeeMachineState) : Event(COFFEE_EVENT_TYPE)
 data class CoffeeMachineClientEvent(val state: CoffeeMachineState) : ClientEvent(COFFEE_EVENT_TYPE)
@@ -34,11 +25,11 @@ class CoffeeMachine : ServerEventEmitter,
 
     private val log = LoggerFactory.getLogger(this.javaClass)
 
-    private val state = AtomicReference<CoffeeMachineState>(
+    private val state = AtomicReference(
         CoffeeMachineState(
             enabled = false,
             schedulingEnabled = false,
-            scheduledTime = LocalTime.MIDNIGHT
+            scheduledDateTime = LocalDateTime.now()
         )
     )
 
@@ -50,7 +41,7 @@ class CoffeeMachine : ServerEventEmitter,
         // Check if it's time to switch coffee machine on
         if (!currentState.enabled &&
             currentState.schedulingEnabled &&
-            currentState.scheduledTime.isBefore(LocalTime.now())) {
+            currentState.scheduledDateTime.isBefore(LocalDateTime.now())) {
             log.info("! Switching coffee machine on !")
 
             state.set(currentState.copy(

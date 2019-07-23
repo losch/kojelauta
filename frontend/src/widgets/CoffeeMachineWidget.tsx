@@ -78,12 +78,12 @@ export default class CoffeeMachineWidget extends Component<CoffeeMachineWidgetPr
                     <button className={event && event.state.schedulingEnabled ? 'on button' : 'button'}
                             onClick={() => {
                               if (event) {
-                                const scheduledTime = prompt("Syötä kellonaika");
+                                const scheduledTime = prompt("Syötä kellonaika", event.state.scheduledTime);
                                 if (scheduledTime) {
                                   this.props.emit(
                                     {type: 'coffee',
                                       state: {
-                                        ...event.state,
+                                        enabled: event.state.enabled,
                                         schedulingEnabled: true,
                                         scheduledTime: scheduledTime
                                       }
