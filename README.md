@@ -7,9 +7,8 @@ Home information dashboard for displaying interesting facts from home's sensors.
 ## Features
 
 * Fetches latest RuuviTag temperature sensor readings from InfluxDB
-* Starts coffee machine at a scheduled time
-
-Work in progress...
+* Starts coffee machine at a scheduled time (work in progress)
+* Fetches weather forecast from FMI open data API
 
 # Development mode
 

@@ -5,11 +5,12 @@ import ClockWidget from './widgets/ClockWidget';
 import {EventProps, withWebSocketMessage} from './api';
 import TemperatureWidget from './widgets/TemperatureWidget';
 import CoffeeMachineWidget from './widgets/CoffeeMachineWidget';
+import FmiForecastWidget from './widgets/FmiForecastWidget';
 
 class App extends Component<EventProps, any> {
 
   state = {
-    widgets: [TemperatureWidget, ClockWidget],
+    widgets: [TemperatureWidget, ClockWidget, FmiForecastWidget],
     coffeeEnabled: null
   };
 
